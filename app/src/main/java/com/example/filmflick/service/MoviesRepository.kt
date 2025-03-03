@@ -1,6 +1,5 @@
 package com.example.filmflick.service
 
-import android.util.Log
 import com.example.filmflick.model.GetMoviesResponse
 import com.example.filmflick.model.Movie
 import retrofit2.Call
