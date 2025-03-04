@@ -11,7 +11,7 @@ import com.example.filmflick.R
 import com.example.filmflick.model.Movie
 import java.util.Collections.addAll
 
-class MoviesAdapter (private var movies :MutableList<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>()
+class MoviesAdapter (private var movies :MutableList<Movie>, private val onMovieClick:(movie : Movie)->Unit) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater
@@ -43,7 +43,9 @@ class MoviesAdapter (private var movies :MutableList<Movie>) : RecyclerView.Adap
                 .load("https://image.tmdb.org/t/p/w342${movie.posterPath}")
                 .transform(CenterCrop())
                 .into(poster)
+            itemView.setOnClickListener { onMovieClick.invoke(movie) } //yeni
         }
     }
+
 
 }

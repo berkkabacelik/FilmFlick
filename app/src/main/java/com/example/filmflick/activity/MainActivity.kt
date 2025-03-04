@@ -1,11 +1,12 @@
-package com.example.filmflick
+package com.example.filmflick.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmflick.R
 import com.example.filmflick.databinding.ActivityMainBinding
 import com.example.filmflick.model.Movie
 import com.example.filmflick.service.MoviesRepository
@@ -40,15 +41,15 @@ class MainActivity : AppCompatActivity() {
         upComingMoviesLayoutMgr = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         binding.popularMovies.layoutManager = popularMoviesLayoutMgr
-        popularMoviesAdapter = MoviesAdapter(mutableListOf())
+        popularMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         binding.popularMovies.adapter = popularMoviesAdapter
 
         binding.topRatedMovies.layoutManager = topRatedMoviesLayoutMgr
-        topRatedMoviesAdapter = MoviesAdapter(mutableListOf())
+        topRatedMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         binding.topRatedMovies.adapter = topRatedMoviesAdapter
 
         binding.upcomingMovies.layoutManager = upComingMoviesLayoutMgr
-        upComingMoviesAdapter = MoviesAdapter(mutableListOf())
+        upComingMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         binding.upcomingMovies.adapter = upComingMoviesAdapter
 
         getPopularMovies()
@@ -136,5 +137,18 @@ class MainActivity : AppCompatActivity() {
     private fun onError() {
         Toast.makeText(this, getString(R.string.error_fetch_movies), Toast.LENGTH_SHORT).show()
     }
+
+    private fun showMovieDetails(movie: Movie) {
+        val intent = Intent(this, MovieDetailsActivity::class.java)
+        intent.putExtra(MOVIE_BACKDROP, movie.backdropPath)
+        intent.putExtra(MOVIE_POSTER, movie.posterPath)
+        intent.putExtra(MOVIE_TITLE, movie.title)
+        intent.putExtra(MOVIE_RATING, movie.rating)
+        intent.putExtra(MOVIE_RELEASE_DATE, movie.releaseDate)
+        intent.putExtra(MOVIE_OVERVIEW, movie.overview)
+        startActivity(intent)
+    }
+
+
 
 }
