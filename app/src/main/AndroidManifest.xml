@@ -14,18 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilmFlick"
         tools:targetApi="31">
+
+        <!-- LoginActivity'i ilk açılacak activity yapıyoruz -->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Diğer activity'ler -->
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.MovieDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

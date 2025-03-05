@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -63,10 +64,16 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.10.0")
+   //implementation(libs.firebase.auth.ktx)
     kapt("com.github.bumptech.glide:compiler:4.10.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+    implementation ("com.google.firebase:firebase-auth:23.2.0") // Firebase Auth KTX sürümü BOM ile kontrol edilecek
 
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }
