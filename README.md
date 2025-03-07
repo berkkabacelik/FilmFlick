@@ -10,10 +10,9 @@ FilmFlick ile sinemanın büyülü dünyasına adım atın! 🎥 TheMovieDatabas
 
 ## Kullanılan Teknolojiler
 - **Kotlin**
-- **RESTful**
+- **RESTful API**
 - **RecyclerView**
 - **Android SDK (Kotlin)**
-- **TMDb API**:
 - **Firebase Authentication**
 - **Glide**
 - **ViewBinding**
